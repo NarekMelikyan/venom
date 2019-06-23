@@ -88,7 +88,7 @@ class HomeController extends Controller
             'name' => 'required',
             'email' => 'required|email',
             'company' => 'required',
-            'message' => 'required|max:300',
+            'message' => 'required|max:191',
         ];
         $validator = Validator::make($data, $rules);
         if ($validator->fails()) {
