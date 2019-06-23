@@ -88,10 +88,11 @@ class HomeController extends Controller
             'name' => 'required',
             'email' => 'required|email',
             'company' => 'required',
-            'message' => 'required',
+            'message' => 'required|max:300',
         ];
         $validator = Validator::make($data, $rules);
         if ($validator->fails()) {
+            return response()->json($validator->errors(),400);
             return redirect()->back()->with($validator->errors());
         }
 
