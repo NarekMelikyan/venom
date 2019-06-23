@@ -14,16 +14,7 @@
 //Route::get('/', function () {
 //    return 'first page';
 //});
-Route::get('/','Frontend\HomeController@index');
-Route::get('/venom-categories','Frontend\HomeController@venomCategories');
-Route::get('categories/{id}/subcategories','Frontend\HomeController@subcategories');
-Route::get('/contact-us','Frontend\HomeController@contactUs');
-Route::get('/venom/{id}','Frontend\HomeController@venom');
-Route::post('/send-message','Frontend\HomeController@sendMessage');
-Route::get('/change-locale','Frontend\HomeController@changeLocale');
-
-
-
+//Route::get('/','Frontend\HomeController@index');
 //login
 Route::get('/login', 'Frontend\HomeController@loginPage')->name('login');
 Route::post('/login', 'Auth\LoginController@login');
