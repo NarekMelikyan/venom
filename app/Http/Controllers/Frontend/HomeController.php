@@ -71,9 +71,12 @@ class HomeController extends Controller
         return response()->json(['categoryImage' => $categoryImage, 'subcategories' => $subcategories], 200);
     }
 
-    public function venom($id)
+    public function venom(Request $request,$id)
     {
-        $venom = Venom::with('translation')->where('id', $id)->first();
+        $lang = $request->get('lang');
+        $venom = Venom::with(['translations' => function ($q) use ($lang){
+            $q->where('lang',$lang);
+        }])->where('id', $id)->first();
         return response()->json(['venom' => $venom], 200);
     }
 
