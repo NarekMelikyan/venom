@@ -53,7 +53,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin'], function () {
     //Mailing
     Route::get('/messages','Backend\MessagesController@index');
     Route::get('/messages/{id}','Backend\MessagesController@show');
-    Route::delete('/message/{id}','Backend\MessagesController@index');
+    Route::post('/message/{id}','Backend\MessagesController@index');
 });
 
 
