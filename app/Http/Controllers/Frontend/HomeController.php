@@ -48,7 +48,9 @@ class HomeController extends Controller
     public function subcategories(Request $request, $id)
     {
         $lang = $request->get('lang');
-        $categoryImage = Categories::where('id', $id)->first()->image;
+        $categoryImage = Categories::with(['translations' => function ($q) use ($lang){
+            $q->where('lang',$lang);
+        }])->where('id', $id)->first()->image;
         $subcategories = Subcategories
             ::with(['translations' => function ($q) use ($lang) {
                 $q->where('lang', $lang);
@@ -61,7 +63,6 @@ class HomeController extends Controller
                 foreach ($item->translations as $index => $translation){
                     if($translation->lang == $lang){
                         $subcategories[$key]['venom'][$i]['translations'] = $translation;
-//                        $subcategories[$key]['venom'][$i]['translations'][$index] == $translation;
                     }
                 }
             }
