@@ -24,7 +24,7 @@ class Subcategories extends Model
     }
 
     public function venom(){
-        return $this->hasMany(Venom::class,'subcategory_id','id')->with('translations');
+        return $this->hasMany(Venom::class,'subcategory_id','id')/*->with('translation')*/;
     }
 
 }
