@@ -60,8 +60,8 @@ class HomeController extends Controller
             foreach ($subcategory->venom as $i => $item){
                 foreach ($item->translations as $index => $translation){
                     if($translation->lang == $lang){
-                        return  $subcategories[$key]['venom'][$i];
-                        $subcategories[$key]['venom']['translations'][$index] == $translation;
+//                        return  $subcategories[$key]['venom'][$i];
+                        $subcategories[$key]['venom'][$i]['translations'][$index] == $translation;
                     }
                 }
             }
