@@ -47,7 +47,7 @@
                                 <td style="text-align: right;font-weight: normal">
                                     <a class="btn btn-sm btn-info"
                                        href="{{asset('/admin/messages/'.$message->id)}}"><i class="fa fa-eye"></i></a>
-                                    {!! Form::open(['url' => '/admin/messages/'.$message->id,'method' => 'delete','style'=>'display:inline-block']) !!}
+                                    {!! Form::open(['url' => '/admin/message/'.$message->id,'method' => 'delete','style'=>'display:inline-block']) !!}
                                     <button class="btn btn-sm btn-danger" type="submit"><i class="fa fa-trash"></i>
                                     </button>
                                     {!! Form::close() !!}
