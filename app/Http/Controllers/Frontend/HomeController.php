@@ -56,6 +56,14 @@ class HomeController extends Controller
 //                $q->where('lang', $lang);
             }*/])
             ->where('category_id', $id)->get();
+        foreach ($subcategories as $key => $subcategory) {
+            foreach ($subcategory->venom->translations as $item){
+                if($item->lang !== $lang){
+                    unset($item);
+                }
+            }
+        }
+
         return response()->json(['categoryImage' => $categoryImage, 'subcategories' => $subcategories], 200);
     }
 
