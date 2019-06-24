@@ -38,12 +38,11 @@ class HomeController extends Controller
 
     public function venomCategories()
     {
-        $categories = Categories::whereHas('translations',function ($q) {
+        $categories = Categories::whereHas(['translations',function ($q) {
             $q->where('categories_translations.lang','ru');
-        })
+        }])
             ->get();
         return response()->json(['categories' => $categories], 200);
-//        return view('Frontend.categories', compact('categories'));
     }
 
     public function subcategories($id)
