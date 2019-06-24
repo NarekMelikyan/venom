@@ -41,7 +41,7 @@ class HomeController extends Controller
         $lang = $request->get('language');
         $categories = Categories::whereHas('translation',function ($q) use ($lang){
             $q->where('categories_translations.lang','en');
-        });
+        })->get();
         return response()->json(['categories' => $categories], 200);
 //        return view('Frontend.categories', compact('categories'));
     }
