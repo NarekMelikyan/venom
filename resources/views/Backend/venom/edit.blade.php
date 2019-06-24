@@ -87,8 +87,8 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="form-group">
-                        <label for="image">Image</label>
-                        <img src="{{asset($venom->image)}}">
+                        <img src="{{asset($venom->image)}}" style="width: 10%">
+                        <label for="image">Image (Choose image if you want to change it)</label>
                         <input name="image" class="form-control" id="image" type="file">
                     </div>
                 </div>
