@@ -36,12 +36,9 @@ class HomeController extends Controller
         return view('Frontend.contact-us');
     }
 
-    public function venomCategories(Request $request)
+    public function venomCategories()
     {
-        $lang = $request->get('language');
-        $categories = Categories::whereHas(['translations', function ($q) {
-            $q->where('lang', '=', 'en');
-        }])->get();
+        $categories = Categories::with('translation')->get();
         return response()->json(['categories' => $categories], 200);
 //        return view('Frontend.categories', compact('categories'));
     }
@@ -57,7 +54,7 @@ class HomeController extends Controller
     public function venom($id)
     {
         $venom = Venom::with('translation')->where('id', $id)->first();
-        return response()->json(['venom' => $venom], 200);
+        return response()->json(['venom' => $venom],200);
     }
 
     public function changeLocale(Request $request)
@@ -91,16 +88,16 @@ class HomeController extends Controller
             'name' => 'required',
             'email' => 'required|email',
             'company' => 'required',
-            'message' => 'required|max:191',
+            'message' => 'required|max:300',
         ];
         $validator = Validator::make($data, $rules);
         if ($validator->fails()) {
-            return response()->json($validator->errors(), 400);
+            return
             return redirect()->back()->with($validator->errors());
         }
 
         $message = Messages::create($data);
-        return response()->json(['message' => $message], 201);
+        return response()->json(['message' => $message],201);
     }
 
 }
