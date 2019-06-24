@@ -93,7 +93,6 @@ class HomeController extends Controller
         $validator = Validator::make($data, $rules);
         if ($validator->fails()) {
             return response()->json($validator->errors(),400);
-            return redirect()->back()->with($validator->errors());
         }
 
         $message = Messages::create($data);

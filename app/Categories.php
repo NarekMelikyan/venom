@@ -12,7 +12,7 @@ class Categories extends Model
     public $timestamps = true;
 
     public function translation(){
-        return $this->belongsTo(CategoriesTranslations::class,'id','category_id')->where('lang',app()->getLocale());
+        return $this->belongsTo(CategoriesTranslations::class,'id','category_id')/*->where('lang',app()->getLocale())*/;
     }
 
     public function translations(){
