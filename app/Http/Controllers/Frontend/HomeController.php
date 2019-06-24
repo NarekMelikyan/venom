@@ -53,7 +53,7 @@ class HomeController extends Controller
             ::with(['translations' => function ($q) use ($lang) {
                 $q->where('lang', $lang);
             }, 'venom' => function ($q) use ($lang) {
-                $q->where('lang', $lang);
+//                $q->where('lang', $lang);
             }])
             ->where('category_id', $id)->get();
         return response()->json(['categoryImage' => $categoryImage, 'subcategories' => $subcategories], 200);
