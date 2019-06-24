@@ -49,9 +49,14 @@ class HomeController extends Controller
     {
         $lang = $request->get('lang');
         $categoryImage = Categories::where('id', $id)->first()->image;
-        $subcategories = Subcategories::with(['translations' => function ($q) use ($lang) {
-            $q->where('lang',$lang);
-        }], 'venom')->where('category_id', $id)->get();
+        $subcategories = Subcategories
+            ::with(['translations' => function ($q) use ($lang) {
+                $q->where('lang', $lang);
+            }])
+            ->with(['venom' => function ($q) use ($lang) {
+                $q->where('lang', $lang);
+            }])
+            ->where('category_id', $id)->get();
         return response()->json(['categoryImage' => $categoryImage, 'subcategories' => $subcategories], 200);
 //        return view('Frontend.subcategories', compact('categoryImage', 'subcategories'));
     }
