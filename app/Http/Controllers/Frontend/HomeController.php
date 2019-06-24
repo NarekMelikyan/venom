@@ -38,7 +38,7 @@ class HomeController extends Controller
 
     public function venomCategories(Request $request)
     {
-        $lang = $request->get('lang');
+        $lang = ($request->get('lang')) ? $request->get('lang') : 'en';
         $categories = Categories::with(['translations' => function ($q) use ($lang) {
             $q->where('lang', $lang);
         }])->get();
@@ -47,7 +47,7 @@ class HomeController extends Controller
 
     public function subcategories(Request $request, $id)
     {
-        $lang = $request->get('lang');
+        $lang = ($request->get('lang')) ? $request->get('lang') : 'en';
         $categoryImage = Categories::with(['translations' => function ($q) use ($lang){
             $q->where('lang',$lang);
         }])->where('id', $id)->first()->image;
