@@ -57,9 +57,11 @@ class HomeController extends Controller
             }*/])
             ->where('category_id', $id)->get();
         foreach ($subcategories as $key => $subcategory) {
-            foreach ($subcategory->venom->translations as $item){
-                if($item->lang !== $lang){
-                    unset($item);
+            foreach ($subcategory->venom as $item){
+                foreach ($item->translations as $index => $translation){
+                    if($translation->lang == $lang){
+                        $subcategories[$key]['venom']['translations'][$index] == $translation;
+                    }
                 }
             }
         }
