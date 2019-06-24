@@ -38,7 +38,9 @@ class HomeController extends Controller
 
     public function venomCategories()
     {
-        $categories = Categories::with('translation')->get();
+        $categories = Categories::with('translation',function ($q) {
+            $q->where('lang','ru');
+        })->get();
         return response()->json(['categories' => $categories], 200);
 //        return view('Frontend.categories', compact('categories'));
     }
