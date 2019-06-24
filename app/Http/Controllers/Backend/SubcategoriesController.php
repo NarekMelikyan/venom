@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Languages;
 use App\Subcategories;
 use App\SubcategoriesTranslations;
+use App\Venom;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
@@ -130,6 +131,7 @@ class SubcategoriesController extends Controller
     public function destroy($id)
     {
         Subcategories::where('id',$id)->delete();
+        Venom::where('subcategory_id',$id)->delete();
         return Redirect::to('/admin/subcategories');
     }
 }

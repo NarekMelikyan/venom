@@ -7,6 +7,7 @@ use App\CategoriesTranslations;
 use App\Http\Controllers\Controller;
 use App\Languages;
 use App\Subcategories;
+use App\Venom;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
@@ -156,6 +157,8 @@ class CategoriesController extends Controller
     public function destroy($id)
     {
         Categories::where('id',$id)->delete();
+        Subcategories::where('category_id',$id)->delete();
+        Venom::where('category_id',$id)->delete();
         return Redirect::back();
     }
 
