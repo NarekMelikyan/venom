@@ -39,7 +39,7 @@ class HomeController extends Controller
     public function venomCategories()
     {
         $categories = Categories::whereHas('translations',function ($q) {
-            $q->where('lang','ru');
+            $q->where('categories_translations.lang','ru');
         })
             ->get();
         return response()->json(['categories' => $categories], 200);
