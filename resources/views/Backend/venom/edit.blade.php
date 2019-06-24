@@ -88,6 +88,7 @@
                 <div class="col-md-12">
                     <div class="form-group">
                         <label for="image">Image</label>
+                        <img src="{{asset($venom->image)}}">
                         <input name="image" class="form-control" id="image" type="file">
                     </div>
                 </div>
