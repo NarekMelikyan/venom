@@ -49,7 +49,7 @@ class HomeController extends Controller
     {
         $lang = $request->get('lang');
         $categoryImage = Categories::where('id', $id)->first()->image;
-        $subcategories = Subcategories::with(['translation' => function ($q) use ($lang) {
+        $subcategories = Subcategories::with(['translations' => function ($q) use ($lang) {
             $q->where('lang',$lang);
         }], 'venom')->where('category_id', $id)->get();
         return response()->json(['categoryImage' => $categoryImage, 'subcategories' => $subcategories], 200);
