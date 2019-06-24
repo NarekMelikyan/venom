@@ -73,7 +73,7 @@ class HomeController extends Controller
 
     public function venom(Request $request,$id)
     {
-        $lang = $request->get('lang');
+        $lang = ($request->get('lang')) ? $request->get('lang') : 'en';
         $venom = Venom::with(['translations' => function ($q) use ($lang){
             $q->where('lang',$lang);
         }])->where('id', $id)->first();
